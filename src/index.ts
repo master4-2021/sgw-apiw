@@ -1,11 +1,12 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import schema from "./resolvers/employee.resolver";
-import cors from "cors"; // Import cors middleware
+import cors from "cors";
+import config from './config'
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: config.react_app_url }));
 
 app.use(
   "/graphql",
@@ -15,7 +16,7 @@ app.use(
   })
 );
 
-const PORT = process.env.PORT || 4000;
+const PORT = config.port || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
