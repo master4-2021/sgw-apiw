@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package employee;
+
+service EmployeeService {
+  rpc CreateEmployee (CreateEmployeeRequest) returns (EmployeeResponse);
+  rpc GetEmployee (GetEmployeeRequest) returns (EmployeeResponse);
+  rpc UpdateEmployee (UpdateEmployeeRequest) returns (EmployeeResponse);
+  rpc DeleteEmployee (DeleteEmployeeRequest) returns (DeleteEmployeeResponse);
+  rpc ListEmployees (Empty) returns (EmployeeListResponse);
+}
+
+message Employee {
+  string id = 1;
+  string name = 2;
+  string position = 3;
+  int32 salary = 4;
+}
+
+message CreateEmployeeRequest {
+  string name = 1;
+  string position = 2;
+  int32 salary = 3;
+}
+
+message GetEmployeeRequest {
+  string id = 1;
+}
+
+message UpdateEmployeeRequest {
+  string id = 1;
+  string name = 2;
+  string position = 3;
+  int32 salary = 4;
+}
+
+message DeleteEmployeeRequest {
+  string id = 1;
+}
+
+message EmployeeResponse {
+  Employee employee = 1;
+}
+
+message DeleteEmployeeResponse {
+  string id = 1;
+}
+
+message EmployeeListResponse {
+  repeated Employee employees = 1;
+}
+
+message Empty {}
