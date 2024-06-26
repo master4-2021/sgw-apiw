@@ -6,7 +6,7 @@ import config from './config'
 
 const app = express();
 
-app.use(cors({ origin: config.react_app_url }));
+app.use(cors({ origin: "*" }));
 
 app.use(
   "/graphql",
@@ -15,6 +15,10 @@ app.use(
     graphiql: true,
   })
 );
+
+app.get('/health', (_req, res) => {
+  res.send("OK").status(200);
+} )
 
 const PORT = config.port || 4000;
 app.listen(PORT, () => {

@@ -34,7 +34,6 @@ const RootQuery = new GraphQLObjectType({
             if (err) {
               reject(err);
             } else {
-              console.log(response);
               resolve(response!.employees || []);
             }
           });
